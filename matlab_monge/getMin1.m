@@ -30,17 +30,30 @@ while s1 > 0 && s2 > 0
     y = col - 1 + find_min(A(row,col:n));
     x = row - 1 + find_min(A(row:m,col));
     
-    % 若行列最小元素为左上角元素，下一次搜索的开始位置需要特意更新
-    if y == col && x == row
-        cand = [cand,[A(x,y);x;y]];
-        % 更新下一次搜索迭代的初始位置
-        col = y+1;
-        row = x+1;
-    else
+    % 若行列最小元素有一者在左上角，下一次搜索的开始位置需要特意更新
+    if y ~= col && x ~= row % 行列都不在左上角
         % 更新记录候选最小元素的矩阵
         cand = [cand,[A(row,y);row;y],[A(x,col);x;col]];
         % 更新下一次搜索迭代的初始位置
         col = y;
+        row = x;
+    elseif y == col && x == row % 行列最小元素都在左上角
+        % 更新记录候选最小元素的矩阵
+        cand = [cand,[A(x,y);x;y]];
+        % 更新下一次搜索迭代的初始位置
+        col = y+1;
+        row = x+1;
+    elseif x == row % 列最小元素在左上角
+        % 更新记录候选最小元素的矩阵
+        cand = [cand,[A(x,y);x;y],[A(row,y);row;y]];
+        % 更新下一次搜索迭代的初始位置
+        col = y;
+        row = x+1;
+    else % 行最小元素在左上角
+        % 更新记录候选最小元素的矩阵
+        cand = [cand,[A(x,y);x;y],[A(x,col);x;col]];
+        % 更新下一次搜索迭代的初始位置
+        col = y+1;
         row = x;
     end
     calc_times = calc_times + s1 + s2 + 2;

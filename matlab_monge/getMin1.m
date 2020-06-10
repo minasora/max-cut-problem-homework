@@ -1,5 +1,5 @@
-function [a,b] = getMin1(A)
-% [a,b] = getMin1(A)
+function [a,b,calc_times] = getMin1(A)
+% [a,b,calc_times] = getMin1(A)
 % 返回Monge矩阵中最小元素的行列索引
 % 利用了Monge矩阵行（列）最小元素所在列（行）数递增的特殊性质
 
@@ -14,6 +14,8 @@ row = 1;
 cand = [];
 % 初始化用于判断搜索范围是否有效的变量
 s1=1;s2=1;
+% 记录比较次数
+calc_times = 0;
 
 % 搜寻行列最小元素
 % 终止条件为行列搜索最小元素索引只有一个不同或下一次搜索坐标无效
@@ -41,16 +43,20 @@ while s1 > 0 && s2 > 0
         col = y;
         row = x;
     end
+    calc_times = calc_times + s1 + s2 + 2;
 end
 
 % 比较候选矩阵里的最小值，返回行列
 temp = find_min(cand(1,:));
 a = cand(2,temp);
 b = cand(3,temp);
+
+% 记录比较次数
+calc_times = calc_times + size(cand,2);
 end
 
 % 子函数，返回一维向量里最小元素的位置
-function min_loc = find_min(v)
+function [min_loc] = find_min(v)
     % 初始化最小元素
     min_val = v(1);
     min_loc = 1;

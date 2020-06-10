@@ -34,13 +34,13 @@ function [t_result0,t_result1,c_result0,c_result1] = test(m,dist)
 n = m - dist;
 len = length(m);
 % 记录getMin0运算时间的矩阵，一行为同一矩阵维数下不同Monge矩阵的运算时间
-t0 = zeros(10,20);
+t0 = zeros(len,20);
 % 记录getMin1运算时间的矩阵，一行为同一矩阵维数下不同Monge矩阵的运算时间
-t1 = zeros(10,20);
+t1 = zeros(len,20);
 % 记录getMin0比较次数的矩阵，一行为同一矩阵维数下不同Monge矩阵的比较次数
-c0 = zeros(10,20);
+c0 = zeros(len,20);
 % 记录getMin1比较次数的矩阵，一行为同一矩阵维数下不同Monge矩阵的比较次数
-c1 = zeros(10,20);
+c1 = zeros(len,20);
 
 % 测试不同规模下两种算法的计算时间
 for i = 1:len

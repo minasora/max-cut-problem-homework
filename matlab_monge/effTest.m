@@ -4,7 +4,7 @@ clc;clear;close;
 
 % 初始化
 m = 50:50:500;% 此处可以修改输入，代表不同规模的矩阵
-dist = [0,2,-2,5];% 可以修改数值，但由于下方子图是以2*2得到的，长度不可更改
+dist = [1,0.4,0.6,1.4];% 可以修改数值，但由于下方子图是以2*2得到的，长度不可更改
 
 % 绘制图像
 for i = 1:4
@@ -15,7 +15,7 @@ for i = 1:4
     plot(m,t_r0,'o-',m,t_r1,'^-');
     xlabel('m');
     ylabel('average time');
-    title(['不同维数（m*n）矩阵下两种算法平均运算时间（m-n=',num2str(dist(i)),'）']);
+    title(['不同维数（m*n）矩阵下两种算法平均运算时间（n=',num2str(dist(i)),'m）']);
     legend('getMin0','getMin1','location','northwest');
     
     figure(2);
@@ -23,7 +23,7 @@ for i = 1:4
     plot(m,c_r0,'o-',m,c_r1,'^-');
     xlabel('m');
     ylabel('compare times');
-    title(['不同维数（m*n）矩阵下两种算法平均比较次数（m-n=',num2str(dist(i)),'）']);
+    title(['不同维数（m*n）矩阵下两种算法平均比较次数（n=',num2str(dist(i)),'m）']);
     legend('getMin0','getMin1','location','northwest');
 end
 
@@ -31,7 +31,7 @@ end
 function [t_result0,t_result1,c_result0,c_result1] = test(m,dist)
 
 % 构造不同规模的输入
-n = m - dist;
+n = round(m .* dist);
 len = length(m);
 % 记录getMin0运算时间的矩阵，一行为同一矩阵维数下不同Monge矩阵的运算时间
 t0 = zeros(len,20);

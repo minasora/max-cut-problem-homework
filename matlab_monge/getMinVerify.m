@@ -3,9 +3,9 @@ clc;clear;close;
 
 % 初始化，生成Monge矩阵
 m = 50:50:500;
-dist = 2;
+dist = 0.6;
 len = length(m);
-n = m - dist;
+n = round(m .* dist);
 
 % 测试不同规模下两种算法的正确性
 for i = 1:len

@@ -9,8 +9,8 @@ fprintf('维基百科的Monge矩阵算例测试结果为：%d\n',wiki_flag);
 m = 50:50:500;
 n = round(repmat(m,3,1).*[1,1.4,0.6]');
 num_m = length(m);
-num_n_type = size(n,1);
-num_sample = 20; % 每个尺寸的算例测试10个
+num_n_type = size(n,1); % 一共有三种n，分别是m的1,1.4,0.6倍
+num_sample = 20; % 每个尺寸的算例测试20个
 flag = zeros(num_m,num_sample,num_n_type); % 初始化逻辑值矩阵
 for i = 1:num_n_type
     for j = 1:num_m
@@ -20,4 +20,4 @@ for i = 1:num_n_type
         end
     end
 end
-fprintf('genMonge(m,n)函数生成的算例是否全部通过：%d\n',all(flag,'all'));
+fprintf('genMonge(m,n)函数生成的算例是否全部通过：%d\n',all(flag,'all')); % 如果输出1，则表示全部通过

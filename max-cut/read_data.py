@@ -1,4 +1,6 @@
 import numpy as np
+
+
 def read_data(file_name):
     """
     read data from txt
@@ -8,7 +10,7 @@ def read_data(file_name):
 
     with open(file_name) as f:
         data = f.readlines()
-    _,p,v = data[0].replace('\n','').split(' ')
+    _, p, v = data[0].replace('\n', '').split(' ')
     edges = np.zeros((int(p), int(p)))
     for i in data[1:]:
         if i == '\n':
@@ -16,6 +18,6 @@ def read_data(file_name):
         line_data = i.split(' ')
         first, second = int(line_data[1]), int((line_data[2]).replace('\n', ''))
         first, second = min(first, second), max(first, second)
-        edges[first-1, second-1] = 1 # 有边设为1
+        edges[first - 1, second - 1] = 1  # 有边设为1
 
     return edges, int(p), int(v)

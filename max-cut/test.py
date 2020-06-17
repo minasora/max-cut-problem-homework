@@ -3,12 +3,7 @@ import tabu_search as ts
 import genenic_algroithm as ga
 import simulated_annealing as sa
 import max_cut_intance as m_instance
-
+import copy
 instance = m_instance.Problem_Instance("text.txt")
-solution = m_instance.Problem_solution(instance)
-solution = sa.Simulated_Annealing(solution, instance)
+solution = ga.genetic_algorithm(instance)
 print(solution.obj)
-print(solution.get_obj(instance))
-
-
-

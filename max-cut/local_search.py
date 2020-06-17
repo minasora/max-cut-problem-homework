@@ -1,5 +1,5 @@
-
 import max_cut_intance as m_instance
+
 iterations = 1000
 
 
@@ -10,12 +10,12 @@ def slip(solution, i, instance):
     :param i: 结点位置
     :return: 更新后的solution
     """
-    solution.nodes[i] = 1-solution.nodes[i]
+    solution.nodes[i] = 1 - solution.nodes[i]
     solution.update(instance, i)
     return solution
 
 
-def local_search(solution, instance, iters = iterations):
+def local_search(solution, instance, iters=iterations):
     """
     邻域搜索
     :param solution:
@@ -25,6 +25,6 @@ def local_search(solution, instance, iters = iterations):
     for i in range(iters):
         t = solution.updates.index(max(solution.updates))
         solution = slip(solution, t, instance)
-        if max(solution.updates) <= 0: # 提前局部最优
+        if max(solution.updates) <= 0:  # 提前局部最优
             break
     return solution

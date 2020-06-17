@@ -12,7 +12,7 @@ class Problem_Instance:
     edges = []
 
     def __init__(self, file_name):
-        self.edges, self.p, self.v,  = read_data(file_name)
+        self.edges, self.p, self.v, = read_data(file_name)
 
 
 class Problem_solution:
@@ -21,7 +21,7 @@ class Problem_solution:
     """
     nodes = []
     obj = 0
-    updates = [] # 维护一个矩阵，储存了节点i 从0-1的obj的变化值
+    updates = []  # 维护一个矩阵，储存了节点i 从0-1的obj的变化值
 
     def __init__(self, instance):
         """
@@ -29,13 +29,13 @@ class Problem_solution:
         :param instance:
         """
         for i in range(instance.p):
-            self.nodes.append(rd.randint(0, 1)) # 随机划分两个集合
+            self.nodes.append(rd.randint(0, 1))  # 随机划分两个集合
             self.updates.append(0)
         for i in range(instance.p):
             delta = 0
             for j in range(instance.p):
-                if instance.edges[min(i, j), max(i, j)] == 1 :
-                    if self.nodes[i] + self.nodes[j] == 1: # 已经相连的
+                if instance.edges[min(i, j), max(i, j)] == 1:
+                    if self.nodes[i] + self.nodes[j] == 1:  # 已经相连的
                         delta += 1
                     else:
                         delta -= 1
@@ -59,12 +59,13 @@ class Problem_solution:
         self.obj = self.obj + self.updates[i]
         for j in range(instance.p):
             if j == i:
-                self.updates[j] = -self.updates[j] # 原来的变负
-            elif instance.edges[min(i, j), max(i, j)] == 1: # 假如i，j有边连接
+                self.updates[j] = -self.updates[j]  # 原来的变负
+            elif instance.edges[min(i, j), max(i, j)] == 1:  # 假如i，j有边连接
                 if self.nodes[i] + self.nodes[j] == 1:
-                    self.updates[j] -= 2 # 原来已在一个集合的-=2
+                    self.updates[j] -= 2  # 原来已在一个集合的-=2
                 else:
-                    self.updates[j] += 2 # 原来不在一个集合的+=2
+                    self.updates[j] += 2  # 原来不在一个集合的+=2
 
-
-
+    def __gt__(self, other):
+        if self.obj >= other.obj:
+            return True

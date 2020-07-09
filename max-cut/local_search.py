@@ -1,12 +1,12 @@
-import max_cut_intance as m_instance
+import max_cut_instance as m_instance
 
 iterations = 1000
 
 
-def slip(solution, i, instance):
+def flip(solution, i, instance):
     """
     将一个点转到另外一个集合
-    :param solution:原来你的解
+    :param solution:原来的解
     :param i: 结点位置
     :return: 更新后的solution
     """
@@ -24,7 +24,7 @@ def local_search(solution, instance, iters=iterations):
     """
     for i in range(iters):
         t = solution.updates.index(max(solution.updates))
-        solution = slip(solution, t, instance)
+        solution = flip(solution, t, instance)
         if max(solution.updates) <= 0:  # 提前局部最优
             break
     return solution

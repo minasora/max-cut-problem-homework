@@ -1,7 +1,8 @@
-import max_cut_intance as m_instance
+import max_cut_instance as m_instance
 import random as rd
 import copy
-from local_search import slip
+from local_search import flip
+import record_process as rp
 
 T = 30  # 种群数量
 max_iters = 100  # 最大迭代次数
@@ -46,7 +47,7 @@ def mutation(solution, instance):
     :return: 随机反转以后的解
     """
     i = rd.randint(0, instance.p - 1)
-    slip(solution, i, instance)
+    flip(solution, i, instance)
     return solution
 
 
@@ -57,10 +58,13 @@ def genetic_algorithm(instance, T=T, max_iters=max_iters, alpha=alpha):
     :return: 返回一个solution，种群中最优解
     """
     solutions = []
+    record_data = 'T {} alpha {}\n\n'.format(T, alpha)
+
     for i in range(T):  # 构造初始解
         solution = m_instance.Problem_solution(instance)
         solutions.append(solution)
     for i in range(max_iters):
+        iter = i
         for j in range(T):  # 交叉
             i = rd.randint(0, T - 1)
             j = rd.randint(0, T - 1)  # 随机生成两个子代
@@ -68,9 +72,11 @@ def genetic_algorithm(instance, T=T, max_iters=max_iters, alpha=alpha):
         for i in range(T):
             pd = rd.random()
             if pd < alpha:
-                mutation(solutions[i], instance)  # 突变
+                mutation(solutions[i], instance)  # 一定概率发生突变
         solutions = select(solutions, instance, T)  # 选择
         solution = max(solutions)
+        record_data = record_data + "generation: {}\n{}\n\n".format(iter, solution)
         print(solution.obj)
     solution = max(solutions)
+    rp.record(record_data, "ga")
     return solution

@@ -57,5 +57,5 @@ def tabu_search(solution, instance, tabu_len_multi=tabu_len_multi, Max_iters=Max
 
         iter += 1
 
-    rp.record(record_data,"tabu")
+    rp.record(record_data,'tabu{}'.format(tabu_len))
     return best_solution

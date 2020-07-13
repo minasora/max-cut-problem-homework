@@ -1,7 +1,7 @@
 from read_data import read_data
-import random as rd
+import random
 import numpy as np
-
+import time
 class Problem_Instance:
     """
     the instance of a problem, consist of p,v and edge
@@ -27,8 +27,12 @@ class Problem_solution:
         init from a instance
         :param instance:
         """
+        self.nodes = []
+        self.obj = 0
+        self.updates = []  # 维护一个矩阵，储存了节点i从0-1的obj的变化值
+        random.seed(time.clock())
         for i in range(instance.p):
-            self.nodes.append(rd.randint(0, 1))  # 随机划分两个集合
+            self.nodes.append(random.randint(0, 1))  # 随机划分两个集合
             self.updates.append(0)  # 根据节点数初始化update矩阵
         for i in range(instance.p):
             delta = 0  # 变换节点所属集合后函数值变化量

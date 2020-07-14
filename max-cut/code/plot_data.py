@@ -37,7 +37,6 @@ def plot_iter(iters,objs,best_objs, first_line, file):
 
     if 'tabu' in file:
         tabu_len = first_line.split()[1]  # 读取禁忌长度
-
         # 绘制图线
         plt.plot(iters, objs)
         plt.plot(iters, best_objs)
@@ -52,5 +51,5 @@ def plot_iter(iters,objs,best_objs, first_line, file):
     plt.title('Objective Value during the Iteration')
 
     # 存储并显示图线
-    plt.savefig(file.replace('.txt','.png'))
+    plt.savefig('./image/'+file.replace('.txt','.png'))
     plt.show()

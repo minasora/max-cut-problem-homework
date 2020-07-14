@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def read_data(file_name):
     """
     read data from txt

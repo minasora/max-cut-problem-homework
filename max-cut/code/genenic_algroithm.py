@@ -5,7 +5,7 @@ from local_search import flip
 import record_process as rp
 
 T = 30  # 种群数量
-max_iters = 100  # 最大迭代次数
+max_iters = 400  # 最大迭代次数
 alpha = 0.1  # 突变概率
 
 

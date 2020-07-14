@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}问题描述}{3}%
+\contentsline {section}{\numberline {2}算法描述与结果分析}{3}%
+\contentsline {subsection}{\numberline {2.1}禁忌搜索算法}{3}%
+\contentsline {subsection}{\numberline {2.2}模拟退火算法}{6}%
+\contentsline {subsection}{\numberline {2.3}遗传算法}{7}%
+\contentsline {section}{\numberline {3}附录}{8}%
